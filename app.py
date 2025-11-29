@@ -4,6 +4,12 @@ estoque = []
 contador_id = 1
 
 def exibir_sub_titulo(texto):
+    """
+    Limpa o terminal e exibe um título formatado com bordas.
+
+    Parâmetros:
+    texto (str): Texto do subtítulo a ser exibido.
+    """
     os.system('cls' if os.name == 'nt' else 'clear')
     linha = '*' * (len(texto) + 4)
     print(linha)
@@ -11,9 +17,18 @@ def exibir_sub_titulo(texto):
     print(linha)
 
 def voltar_ao_menu():
+    """
+    Pausa a execução aguardando o usuário pressionar uma tecla.
+    """
     input('\nDigite uma tecla para voltar ao menu')
     
 def adicionar():
+    """
+    Adiciona um novo produto ao estoque.
+
+    Solicita nome, preço e quantidade do produto.
+    Valida entradas numéricas e incrementa o ID automaticamente.
+    """
     global contador_id
     exibir_sub_titulo('ADICIONAR UM NOVO PRODUTO')
     nome = input('Digite o nome do produto: ')
@@ -36,6 +51,12 @@ def adicionar():
         print('Erro: digite números válidos para o preço e quantidade!')
 
 def listar(pausa=True):
+    """
+    Lista todos os produtos cadastrados no estoque.
+
+    Parâmetros:
+    pausa (bool): Se True, aguarda o usuário antes de retornar ao menu.
+    """
     exibir_sub_titulo('LISTA DE PRODUTOS')
     if not estoque:
         print('Nenhum produto cadastrado')
@@ -47,6 +68,11 @@ def listar(pausa=True):
         voltar_ao_menu()
 
 def atualizar():
+    """
+    Atualiza informações de um produto pelo ID.
+
+    Permite alterar nome, preço ou quantidade do produto selecionado.
+    """
     exibir_sub_titulo('ATUALIZANDO PRODUTO')
     listar(pausa=False)
 
@@ -87,6 +113,11 @@ def atualizar():
         print('O ID deve ser um número!')
 
 def remover():
+    """
+    Remove um produto do estoque pelo ID.
+
+    Exibe a lista, solicita o ID e exclui o item correspondente.
+    """
     exibir_sub_titulo('REMOVER UM PRODUTO')
     listar(pausa=False)
 
@@ -103,6 +134,11 @@ def remover():
         print('O ID deve ser um número!')
 
 def menu():
+    """
+    Exibe o menu principal do sistema e direciona para as funções.
+
+    Garante tratamento de erros para entradas inválidas.
+    """
     while True:
         exibir_sub_titulo('GESTÃO DE ESTOQUE')
         print('1 - Adicionar produto')
@@ -130,6 +166,11 @@ def menu():
             print('Erro: Digite uma opção válida')
 
 def main():
+    """
+    Função principal que inicia o programa.
+
+    Responsável apenas por chamar o menu.
+    """
     menu()
 
 if __name__ == '__main__':
